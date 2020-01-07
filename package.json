@@ -1,0 +1,69 @@
+{
+  "name": "eemi-home",
+  "description": "Stack : Electron, Create React App",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "bomzie",
+    "email": "bomzielab@gmail.com",
+    "url": "https://bomzielab.com"
+  },
+  "build": {
+    "appId": "com.bomzielab.eemi-home",
+    "productName": "EEMI Home",
+    "copyright": "Copyright © 2020 ${author}",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.8.3",
+    "@material-ui/icons": "^4.5.1",
+    "electron-is-dev": "^1.0.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-router-dom": "^5.1.2",
+    "react-router-prop-types": "^1.0.4",
+    "react-scripts": "2.1.5",
+    "react-transition-group": "^4.3.0",
+    "styled-components": "^4.4.1"
+  },
+  "homepage": "./",
+  "main": "public/electron.js",
+  "scripts": {
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "yarn build",
+    "electron-pack": "build -l"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@rescripts/cli": "^0.0.10",
+    "@rescripts/rescript-env": "^0.0.5",
+    "concurrently": "^4.1.0",
+    "electron": "^4.0.6",
+    "electron-builder": "^20.38.5",
+    "typescript": "^3.3.3333",
+    "wait-on": "^3.2.0"
+  }
+}
