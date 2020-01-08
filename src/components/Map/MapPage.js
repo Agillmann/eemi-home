@@ -1,5 +1,7 @@
 import React from "react";
 import ReactMapGl, { Layer } from "react-map-gl";
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+
 
 class MapPage extends React.Component {
   state = {
@@ -13,37 +15,19 @@ class MapPage extends React.Component {
     }
   };
 
+  componentDidMount(){
+    console.log(LocationOnIcon)
+  }
+    
   render() {
     return (
       <div>
         <ReactMapGl
           {...this.state.viewport}
-          mapStyle="mapbox://styles/mapbox/light-v10"
+          mapStyle="mapbox://styles/agillmann/ck55rgayh01b11cs15jkyfoer"
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
           onViewportChange={viewport => this.setState({ viewport })}
         >
-          <Layer
-            id="3d-buildings"
-            sourceId="composite"
-            layerOptions={{
-              "source-layer": "building",
-              filter: ["==", "extrude", "true"],
-              type: "fill-extrusion",
-              minzoom: 15
-            }}
-            paint={{
-              "fill-extrusion-color": "#aaa",
-              "fill-extrusion-height": {
-                type: "identity",
-                property: "height"
-              },
-              "fill-extrusion-base": {
-                type: "identity",
-                property: "min_height"
-              },
-              "fill-extrusion-opacity": 0.6
-            }}
-          />
         </ReactMapGl>
       </div>
     );
