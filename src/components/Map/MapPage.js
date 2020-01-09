@@ -14,10 +14,6 @@ class MapPage extends React.Component {
     }
   };
 
-  componentDidMount() {
-    console.log(LocationOnIcon);
-  }
-
   handleClick(e) {
     e.preventDefault();
     console.log("Le Marker a été cliqué.");
