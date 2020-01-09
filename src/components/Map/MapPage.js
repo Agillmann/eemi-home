@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMapGl, { Layer } from "react-map-gl";
+import ReactMapGl, { Marker } from "react-map-gl";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 class MapPage extends React.Component {
@@ -18,6 +18,11 @@ class MapPage extends React.Component {
     console.log(LocationOnIcon);
   }
 
+  handleClick(e) {
+    e.preventDefault();
+    console.log("Le Marker a été cliqué.");
+  }
+
   render() {
     return (
       <div>
@@ -26,7 +31,19 @@ class MapPage extends React.Component {
           mapStyle="mapbox://styles/mapbox/light-v10"
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
           onViewportChange={viewport => this.setState({ viewport })}
-        ></ReactMapGl>
+        >
+          <Marker
+            latitude={48.868759}
+            longitude={2.3409}
+            offsetLeft={-20}
+            offsetTop={-10}
+          >
+            <LocationOnIcon
+              style={{ fontSize: 55, cursor: "pointer" }}
+              onClick={this.handleClick}
+            />
+          </Marker>
+        </ReactMapGl>
       </div>
     );
   }
