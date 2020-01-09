@@ -76,7 +76,7 @@ npm i --save strapi-provider-upload-cloudinary
 
 ```bash=
 # Linux
-wget -qO- [https://cli-assets.heroku.com/install-ubuntu.sh](https://cli-assets.heroku.com/install-ubuntu.sh)
+curl https://cli-assets.heroku.com/install.sh | sh
 ```
 
 ```bash=
