@@ -1,7 +1,6 @@
 import React from "react";
 import ReactMapGl, { Layer } from "react-map-gl";
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 class MapPage extends React.Component {
   state = {
@@ -15,20 +14,19 @@ class MapPage extends React.Component {
     }
   };
 
-  componentDidMount(){
-    console.log(LocationOnIcon)
+  componentDidMount() {
+    console.log(LocationOnIcon);
   }
-    
+
   render() {
     return (
       <div>
         <ReactMapGl
           {...this.state.viewport}
-          mapStyle="mapbox://styles/agillmann/ck55rgayh01b11cs15jkyfoer"
+          mapStyle="mapbox://styles/mapbox/light-v10"
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
           onViewportChange={viewport => this.setState({ viewport })}
-        >
-        </ReactMapGl>
+        ></ReactMapGl>
       </div>
     );
   }
