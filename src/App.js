@@ -15,7 +15,7 @@ const App = ({ location }) => {
   return (
     <Layout>
       <TransitionGroup className="transition-group">
-        <CSSTransition key={location.key} timeout={{ enter: 300, exit: 300 }} classNames={'fade'}>
+        <CSSTransition key={location.key} timeout={{ enter: 400, exit: 400 }} classNames={'fade'}>
           <section className="route-section">
             <Switch location={location}>
               <Route path="/" exact component={HomePage} />
