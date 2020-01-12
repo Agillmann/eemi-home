@@ -1,22 +1,34 @@
-import React from "react";
-import ReactMapGl, { Marker } from "react-map-gl";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+import React, { useEffect } from 'react';
+import ReactMapGl from 'react-map-gl';
 
-const DEFAULT_VIEWPORT = { 
-  width: "100vw",
-  height: "100vh",
+// COMPONENTS
+import MarkerQrcode from './MarkerQrcode';
+
+const DEFAULT_VIEWPORT = {
+  width: '100vw',
+  height: '100vh',
   latitude: 48.868759,
   longitude: 2.3409,
   pitch: 50,
-  zoom: 16
-}
+  zoom: 16,
+};
+const DEFAULT_DATA = {
+  latitude: 48.868759,
+  longitude: 2.3409,
+
+  dataDialogue: {
+    title: 'Title',
+    subTitle: 'Subtitle',
+    textContent: 'Text Content ...',
+  },
+};
 
 const MapPage = () => {
   const [viewport, setViewport] = React.useState(DEFAULT_VIEWPORT);
-  const handleClick = (e) => {
-    e.preventDefault();
-    console.log("Le Marker a été cliqué.");
-  }
+  const [data, setData] = React.useState(DEFAULT_DATA);
+  useEffect(() => {
+    // TODO: Fetch data from api
+  });
   return (
     <div>
       <ReactMapGl
@@ -25,20 +37,14 @@ const MapPage = () => {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
         onViewportChange={viewport => setViewport(viewport)}
       >
-        <Marker
-          latitude={48.868759}
-          longitude={2.3409}
-          offsetLeft={-20}
-          offsetTop={-10}
-        >
-          <LocationOnIcon
-            style={{ fontSize: 55, cursor: "pointer" }}
-            onClick={handleClick}
-          />
-        </Marker>
+        <MarkerQrcode
+          latitude={data.latitude}
+          longitude={data.longitude}
+          data={data}
+        ></MarkerQrcode>
       </ReactMapGl>
     </div>
   );
-}
+};
 
 export default MapPage;
