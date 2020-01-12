@@ -10,12 +10,16 @@ import NewsPage from './components/News/NewsPage';
 
 import Page404 from './components/Errors/Page404';
 
-import './App.css'
+import './App.css';
 const App = ({ location }) => {
   return (
     <Layout>
       <TransitionGroup className="transition-group">
-        <CSSTransition key={location.key} timeout={{ enter: 400, exit: 400 }} classNames={'fade'}>
+        <CSSTransition
+          key={location.key}
+          timeout={{ enter: 400, exit: 400 }}
+          classNames={'fade'}
+        >
           <section className="route-section">
             <Switch location={location}>
               <Route path="/" exact component={HomePage} />

@@ -10,11 +10,11 @@ import QRCode from 'qrcode.react';
 const useStyles = makeStyles(theme => ({
   div: {
     display: 'flex',
-    justifyContent:'flex-start'
+    justifyContent: 'flex-start',
   },
   section: {
-    marginLeft: '1.5em'
-  }
+    marginLeft: '1.5em',
+  },
 }));
 
 const ButtonQrcode = () => {
@@ -43,12 +43,22 @@ const ButtonQrcode = () => {
         <DialogTitle id="max-width-dialog-title">Date & Source</DialogTitle>
         <DialogContent>
           <div className={classes.div}>
-              <QRCode value="https://maps.google.com/@48.868759,2.3409" size="256"/>
-              <section className={classes.section}>
-                <h3>News Title</h3>
-                <p>Eu occaecat do ad sunt ex labore magna nostrud pariatur. In exercitation nulla mollit culpa aliqua cillum commodo exercitation laborum voluptate veniam velit. Anim esse eiusmod occaecat ullamco aliquip esse irure tempor. Minim non eiusmod exercitation deserunt elit minim ullamco ut eu occaecat. Magna non laboris cillum ea fugiat ut id id consequat cupidatat incididunt.
-                </p>
-              </section>
+            <QRCode
+              value="https://www.google.com/maps/search/?api=1&query=36.26577,-92.54324"
+              size={256}
+            />
+            <section className={classes.section}>
+              <h3>News Title</h3>
+              <p>
+                Eu occaecat do ad sunt ex labore magna nostrud pariatur. In
+                exercitation nulla mollit culpa aliqua cillum commodo
+                exercitation laborum voluptate veniam velit. Anim esse eiusmod
+                occaecat ullamco aliquip esse irure tempor. Minim non eiusmod
+                exercitation deserunt elit minim ullamco ut eu occaecat. Magna
+                non laboris cillum ea fugiat ut id id consequat cupidatat
+                incididunt.
+              </p>
+            </section>
           </div>
         </DialogContent>
         <DialogActions>
@@ -59,6 +69,6 @@ const ButtonQrcode = () => {
       </Dialog>
     </React.Fragment>
   );
-}
+};
 
 export default ButtonQrcode;

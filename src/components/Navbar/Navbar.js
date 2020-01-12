@@ -27,7 +27,11 @@ export default function Navbar() {
   };
 
   return (
-    <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+    <BottomNavigation
+      value={value}
+      onChange={handleChange}
+      className={classes.root}
+    >
       <BottomNavigationAction
         component={Link}
         to="/"

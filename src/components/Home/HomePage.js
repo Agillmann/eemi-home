@@ -1,12 +1,9 @@
-import React from "react";
-import QRCode from "qrcode.react";
-import ButtonQrcode from '../Buttons/ButtonQrcode';
+import React from 'react';
 
 const HomePage = () => {
   return (
     <div className="">
-      <h1>Home Page</h1> 
-      <ButtonQrcode/>
+      <h1>Home Page</h1>
     </div>
   );
 };
