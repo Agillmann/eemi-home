@@ -28,7 +28,7 @@ const MapPage = () => {
       <div>
         <ReactMapGl
           {...viewport}
-          mapStyle="mapbox://styles/mapbox/light-v10"
+          mapStyle="mapbox://styles/agillmann/ck5n2xtgb1a3y1is60c0p7y72"
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
           onViewportChange={viewport => setViewport(viewport)}
         >
