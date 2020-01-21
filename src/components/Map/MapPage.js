@@ -1,8 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactMapGl from 'react-map-gl';
+
+//MATERIAL UI
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 // COMPONENTS
 import MarkerQrcode from './MarkerQrcode';
+
+// HOOKS
+import useFetchRestaurant from '../../hooks/useFetchRestaurant';
 
 const DEFAULT_VIEWPORT = {
   width: '100vw',
@@ -12,39 +18,40 @@ const DEFAULT_VIEWPORT = {
   pitch: 50,
   zoom: 16,
 };
-const DEFAULT_DATA = {
-  latitude: 48.868759,
-  longitude: 2.3409,
-
-  dataDialogue: {
-    title: 'Title',
-    subTitle: 'Subtitle',
-    textContent: 'Text Content ...',
-  },
-};
 
 const MapPage = () => {
-  const [viewport, setViewport] = React.useState(DEFAULT_VIEWPORT);
-  const [data, setData] = React.useState(DEFAULT_DATA);
-  useEffect(() => {
-    // TODO: Fetch data from api
-  });
-  return (
-    <div>
-      <ReactMapGl
-        {...viewport}
-        mapStyle="mapbox://styles/mapbox/light-v10"
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
-        onViewportChange={viewport => setViewport(viewport)}
-      >
-        <MarkerQrcode
-          latitude={data.latitude}
-          longitude={data.longitude}
-          data={data}
-        ></MarkerQrcode>
-      </ReactMapGl>
-    </div>
-  );
+  const [viewport, setViewport] = useState(DEFAULT_VIEWPORT);
+  const [data, load, error] = useFetchRestaurant();
+
+  if (load) {
+    return (
+      <div>
+        <ReactMapGl
+          {...viewport}
+          mapStyle="mapbox://styles/agillmann/ck5n2xtgb1a3y1is60c0p7y72"
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
+          onViewportChange={viewport => setViewport(viewport)}
+        >
+          {data.length > 0 &&
+            data.map((d, index) => (
+              <MarkerQrcode
+                key={d.id}
+                latitude={d.latitude}
+                longitude={d.longitude}
+                data={d}
+              ></MarkerQrcode>
+            ))}
+        </ReactMapGl>
+        {error && <p>{error.message}</p>}
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <CircularProgress />
+      </div>
+    );
+  }
 };
 
 export default MapPage;

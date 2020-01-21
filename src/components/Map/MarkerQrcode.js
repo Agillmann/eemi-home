@@ -53,7 +53,7 @@ const MarkerQrcode = ({ latitude, longitude, data }) => {
         aria-labelledby="max-width-dialog-title"
       >
         <DialogTitle id="max-width-dialog-title">
-          {data ? data.dataDialogue.title : 'Title'}
+          {data ? data.name : 'Nom'}
         </DialogTitle>
         <DialogContent>
           <div className={classes.div}>
@@ -62,14 +62,10 @@ const MarkerQrcode = ({ latitude, longitude, data }) => {
               size={256}
             />
             <section className={classes.section}>
-              <h3>
-                {data ? data.dataDialogue.subTitle : 'Subtitle'}
-              </h3>
-              <p>
-                {data
-                  ? data.dataDialogue.textContent
-                  : 'Text Content'}
-              </p>
+              <h3>Adresse : {data ? data.address : 'Adresse'}</h3>
+              <p>{data ? data.description : 'Description'}</p>
+              <p>Catégorie : {data ? data.cat : 'Catégorie'}</p>
+              <h4>{data ? data.tel : 'Téléphone'}</h4>
             </section>
           </div>
         </DialogContent>
@@ -86,7 +82,7 @@ const MarkerQrcode = ({ latitude, longitude, data }) => {
 MarkerQrcode.propTypes = {
   latitude: PropTypes.number.isRequired,
   longitude: PropTypes.number.isRequired,
-  dataDialogue: PropTypes.any,
+  data: PropTypes.any,
 };
 
 export default MarkerQrcode;
