@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
   div: {
     display: 'flex',
     justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   section: {
     marginLeft: '1.5em',
@@ -31,7 +32,6 @@ const MarkerQrcode = ({ latitude, longitude, data }) => {
   };
   const handleClickOpen = () => {
     setOpen(true);
-    console.log(open);
   };
 
   return (
@@ -67,7 +67,9 @@ const MarkerQrcode = ({ latitude, longitude, data }) => {
               {data ? <Markdown source={data.description} /> : 'Description'}
               <p>
                 Catégorie :{' '}
-                {data ? data.categorie_restaurant.name : 'Catégorie'}
+                {data.categorie_restaurant
+                  ? data.categorie_restaurant.name
+                  : 'Catégorie'}
               </p>
               <h4>{data ? data.tel : 'Téléphone'}</h4>
             </section>
