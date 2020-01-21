@@ -83,6 +83,7 @@ const MapPage = () => {
         .getElementById(e.target.id)
         .parentNode.parentNode.classList.add('ischecked');
     } else {
+      setFilter(false);
       let filtered = filterByCat.filter(
         data => data.categorie_restaurant.name !== e.target.id,
       );
