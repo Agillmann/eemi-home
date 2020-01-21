@@ -23,6 +23,6 @@ const useFetchRestaurant = () => {
     fetchRestaurant();
   }, []);
 
-  return [data, load, error];
+  return [data, load, error, setData];
 };
 export default useFetchRestaurant;

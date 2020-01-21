@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
   h2: {
     fontSize: '2em',
     textAlign: 'center',
+    color: '#FFF',
+    margin: '0 auto',
+    padding: 10,
   },
   mapbox: {
     zIndex: 0,
@@ -36,8 +39,8 @@ const useStyles = makeStyles(theme => ({
   },
   filterWidget: {
     position: 'absolute',
-    top: '10vh',
-    right: 65,
+    top: '5vh',
+    right: 50,
     width: '25vw',
     backgroundColor: '#F8F8F8',
     boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
@@ -50,7 +53,9 @@ const useStyles = makeStyles(theme => ({
   checkbox_form: {
     padding: 20,
   },
-  checkbox_form_input: {},
+  checkbox_form_input: {
+    opacity: 0,
+  },
   label: {
     fontWeight: 700,
     fontSize: '1.5em',
@@ -60,24 +65,52 @@ const useStyles = makeStyles(theme => ({
 const MapPage = () => {
   const classes = useStyles();
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT);
-  const [data, load1, error1] = useFetchRestaurant();
+  const [data, load1, error1, setData] = useFetchRestaurant();
   const [categorie, load2, error2] = useFetchCategorie();
-  const handleCheckboxChange = event => console.log(event);
+  const [filter, setFilter] = useState(false);
+  const [filteredata, setFilteredata] = useState(data);
+
+  const handleCheckboxChange = e => {
+    let filterByCat = data.filter(data => data.categorie_restaurant);
+
+    setFilter(true);
+    if (e.target.checked) {
+      let filtered = filterByCat.filter(
+        data => data.categorie_restaurant.name === e.target.id,
+      );
+      setFilteredata(filtered);
+      document
+        .getElementById(e.target.id)
+        .parentNode.parentNode.classList.add('ischecked');
+    } else {
+      let filtered = filterByCat.filter(
+        data => data.categorie_restaurant.name !== e.target.id,
+      );
+      setFilteredata(filtered);
+      document
+        .getElementById(e.target.id)
+        .parentNode.parentNode.classList.remove('ischecked');
+    }
+    console.log(filteredata);
+  };
+
   if (load1 && load2) {
-    console.log(data);
+    //console.log(data);
     return (
       <div>
         <div className={classes.filterWidget}>
-          <h2 className={classes.h2}>Catégories</h2>
+          <div style={{ backgroundColor: '#0E0E0E' }}>
+            <h2 className={classes.h2}>Catégories</h2>
+          </div>
           {categorie.length > 0 &&
-            categorie.map((cat, index) => (
-              <div key={index} className={classes.checkbox_container}>
+            categorie.map(cat => (
+              <div key={cat.id} className={classes.checkbox_container}>
                 <div className={classes.checkbox_form}>
-                  <label htmlFor={cat.id} className={classes.label}>
+                  <label htmlFor={cat.name} className={classes.label}>
                     <input
                       onChange={handleCheckboxChange}
                       className={classes.checkbox_form_input}
-                      id={cat.id}
+                      id={cat.name}
                       type="checkbox"
                     />
                     {cat.name}
@@ -93,15 +126,23 @@ const MapPage = () => {
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
             onViewportChange={viewport => setViewport(viewport)}
           >
-            {data.length > 0 &&
-              data.map((d, index) => (
-                <MarkerQrcode
-                  key={d.id}
-                  latitude={d.latitude}
-                  longitude={d.longitude}
-                  data={d}
-                ></MarkerQrcode>
-              ))}
+            {filter
+              ? filteredata.map((d, index) => (
+                  <MarkerQrcode
+                    key={d.id}
+                    latitude={d.latitude}
+                    longitude={d.longitude}
+                    data={d}
+                  ></MarkerQrcode>
+                ))
+              : data.map((d, index) => (
+                  <MarkerQrcode
+                    key={d.id}
+                    latitude={d.latitude}
+                    longitude={d.longitude}
+                    data={d}
+                  ></MarkerQrcode>
+                ))}
           </ReactMapGl>
           {error1 && <p>{error1.message}</p>}
           {error2 && <p>{error2.message}</p>}

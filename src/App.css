@@ -29,3 +29,8 @@ section.route-section {
 .fade-exit-active {
   opacity: 0;
 }
+
+.ischecked {
+  background: rgb(183,225,131);
+  background: linear-gradient(180deg, rgba(183,225,131,1) 0%, rgba(183,225,131,1) 35%, rgba(113,222,86,1) 100%); 
+}
