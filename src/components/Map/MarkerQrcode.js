@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Marker } from 'react-map-gl';
 import QRCode from 'qrcode.react';
+import Markdown from 'react-markdown';
 
 // MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -63,8 +64,11 @@ const MarkerQrcode = ({ latitude, longitude, data }) => {
             />
             <section className={classes.section}>
               <h3>Adresse : {data ? data.address : 'Adresse'}</h3>
-              <p>{data ? data.description : 'Description'}</p>
-              <p>Catégorie : {data ? data.cat : 'Catégorie'}</p>
+              {data ? <Markdown source={data.description} /> : 'Description'}
+              <p>
+                Catégorie :{' '}
+                {data ? data.categorie_restaurant.name : 'Catégorie'}
+              </p>
               <h4>{data ? data.tel : 'Téléphone'}</h4>
             </section>
           </div>
