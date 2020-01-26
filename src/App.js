@@ -10,6 +10,7 @@ import NewsPage from './components/News/NewsPage';
 
 import Page404 from './components/Errors/Page404';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 const App = ({ location }) => {
   return (

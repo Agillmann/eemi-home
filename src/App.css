@@ -1,3 +1,15 @@
+
+/*=============================================
+=            PRESET             =
+=============================================*/
+
+.whiteBg{background-color: #fff !important;}
+
+
+/*=====  End of PRESET  ======*/
+
+
+
 div.transition-group {
   position: relative;
 }
@@ -29,3 +41,14 @@ section.route-section {
 .fade-exit-active {
   opacity: 0;
 }
+
+
+/*=============================================
+=            NEWS SECTION            =
+=============================================*/
+
+.categorie-button{
+  box-shadow: 5px 5px 8px silver;
+}
+/*=====  End of NEWS SECTION  ======*/
+

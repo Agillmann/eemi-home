@@ -27,6 +27,7 @@
     "@material-ui/core": "^4.8.3",
     "@material-ui/icons": "^4.5.1",
     "axios": "^0.19.1",
+    "bootstrap": "^4.4.1",
     "electron-is-dev": "^1.0.1",
     "prop-types": "^15.7.2",
     "qrcode.react": "^1.0.0",
@@ -46,7 +47,7 @@
     "build": "rescripts build",
     "test": "rescripts test",
     "eject": "react-scripts eject",
-    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "preelectron-pack": "yarn build",
     "electron-pack": "build -l"
